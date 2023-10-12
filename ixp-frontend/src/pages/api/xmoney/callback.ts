@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { WebhookValidator } from "@utrustdev/utrust-ts-library";
 import fs from "fs";
+import { getInvoice } from "src/utils/firebase";
 
 export default async function handleNewInvoices(
 	req: NextApiRequest,
@@ -18,9 +19,15 @@ export default async function handleNewInvoices(
 	}
 
 	const reference = req.body.resource.reference;
-	const invoiceId = reference.split("<")[1].split(">")[0];
+	const invoiceUuid = reference.split("<")[1].split(">")[0];
+	const invoiceDb = await getInvoice(invoiceUuid);
+	if (!invoiceDb) {
+		return res.status(404).send("Invoice not found");
+	}
+	const companyId = invoiceDb.company;
+	const invoiceId = invoiceDb.ficInvoiceId;
 
-	console.log("invoice id is", invoiceId);
+	await setInvoicePaid(companyId, invoiceId);
 
-	res.status(200).send("Hello World!");
+	res.status(200).send("Done!");
 }

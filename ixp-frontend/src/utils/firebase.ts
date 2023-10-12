@@ -5,8 +5,10 @@ import {
 	getDoc,
 	getDocs,
 	updateDoc,
+	setDoc,
 	collection,
 } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -26,10 +28,16 @@ export function closeFirebase() {
 }
 
 const companiesColl = collection(db, "companies");
+const invoicesColl = collection(db, "invoices");
 
 type Company = {
 	id: number;
 	handledInvoices: number[];
+};
+
+type Invoice = {
+	company: number;
+	ficInvoiceId: string;
 };
 
 function getCompanyDoc(companyId: number) {
@@ -82,4 +90,29 @@ export async function addHandledInvoice(companyId: number, invoiceId: number) {
 			handledInvoices: handledInvoices,
 		});
 	}
+}
+
+export async function addInvoice(
+	companyId: number,
+	ficInvoiceId: string
+): Promise<string> {
+	const uuid = uuidv4();
+	const invoiceDoc = doc(db, "invoices", uuid);
+	await setDoc(invoiceDoc, {
+		company: companyId,
+		ficInvoiceId: ficInvoiceId,
+	});
+	return uuid;
+}
+
+export async function getInvoice(uuid: string): Promise<Invoice> {
+	const docRef = doc(db, "invoices", uuid);
+	const docSnap = await getDoc(docRef);
+
+	if (!docSnap.exists()) {
+		throw new Error("Invoice not found");
+	}
+
+	const data = docSnap.data() as Invoice;
+	return data;
 }

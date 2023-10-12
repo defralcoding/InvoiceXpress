@@ -18,6 +18,18 @@ export const getCompanyInvoices = async (
 		"invoice"
 	);
 
+	console.log(response.data.data);
+	return response.data.data ?? [];
+};
+
+export const getInvoice = async (
+	companyId: number,
+	invoiceId: number
+): Promise<IssuedDocument> => {
+	let apiInstance = new IssuedDocumentsApi(ficApiConfig);
+	const response = await apiInstance.getIssuedDocument(companyId, invoiceId);
+
+	console.log(response.data.data);
 	return response.data.data ?? [];
 };
 
@@ -46,22 +58,36 @@ export const setInvoicePaid = async (companyId: number, invoiceId: number) => {
 		data: {
 			payments_list: [
 				{
-					amount: 1,
-					date: "2023-10-10",
+					due_date: todayToFormat(),
+					paid_date: todayToFormat(),
 					status: "paid",
 					payment_account: {
-						id: 1,
+						id: 1125386, // TODO get from FIC for each company
 					},
 				},
 			],
 		},
+		options: {
+			fix_payments: true,
+		},
 	};
 
-	/*
 	const { data } = await apiInstance.modifyIssuedDocument(
 		companyId,
 		invoiceId,
 		request
 	);
-    */
 };
+
+function todayToFormat() {
+	//returns today's date in the format YYYY-MM-DD
+	var d = new Date(Date.now());
+	var month = "" + (d.getMonth() + 1);
+	var day = "" + d.getDate();
+	var year = d.getFullYear();
+
+	if (month.length < 2) month = "0" + month;
+	if (day.length < 2) day = "0" + day;
+
+	return [year, month, day].join("-");
+}
