@@ -29,7 +29,6 @@ export const getInvoice = async (
 	let apiInstance = new IssuedDocumentsApi(ficApiConfig);
 	const response = await apiInstance.getIssuedDocument(companyId, invoiceId);
 
-	console.log(response.data.data);
 	return response.data.data;
 };
 

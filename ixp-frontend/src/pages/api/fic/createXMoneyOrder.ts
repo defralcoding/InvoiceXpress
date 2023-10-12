@@ -25,6 +25,7 @@ export default async function handleNewInvoices(
 	res: NextApiResponse
 ) {
 	const uuid = req.query.uuid as string;
+	console.log("uuid", uuid);
 	const invoice = await getInvoice(uuid);
 	if (!invoice) {
 		return res.status(404).send("Invoice not found");
