@@ -41,7 +41,7 @@ export const modifyInvoiceWithLink = async (
 	let apiInstance = new IssuedDocumentsApi(ficApiConfig);
 	let request: ModifyIssuedDocumentRequest = {
 		data: {
-			notes: `Pay the invoice with xMoney <a href="${link}" rel="noopener noreferrer" target="_blank">here</a>`,
+			notes: `Pay the invoice with xMoney Crypto <a href="${link}" rel="noopener noreferrer" target="_blank">here</a>`,
 		},
 	};
 

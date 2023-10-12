@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { WebhookValidator } from "@utrustdev/utrust-ts-library";
 import fs from "fs";
 import { getInvoice } from "src/utils/firebase";
+import { setInvoicePaid } from "src/utils/fic";
 
 export default async function handleNewInvoices(
 	req: NextApiRequest,
@@ -18,6 +19,10 @@ export default async function handleNewInvoices(
 		return res.status(400).send("Invalid signature");
 	}
 
+	if (req.body.eventType !== "ORDER.PAYMENT.RECEIVED") {
+		return res.status(200).send("Ok");
+	}
+
 	const reference = req.body.resource.reference;
 	const invoiceUuid = reference.split("<")[1].split(">")[0];
 	const invoiceDb = await getInvoice(invoiceUuid);
@@ -29,5 +34,6 @@ export default async function handleNewInvoices(
 
 	await setInvoicePaid(companyId, invoiceId);
 
+	console.log("Received confirmation for invoice", invoiceId);
 	res.status(200).send("Done!");
 }
