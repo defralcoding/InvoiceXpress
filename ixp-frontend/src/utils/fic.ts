@@ -30,7 +30,7 @@ export const getInvoice = async (
 	const response = await apiInstance.getIssuedDocument(companyId, invoiceId);
 
 	console.log(response.data.data);
-	return response.data.data ?? [];
+	return response.data.data;
 };
 
 export const modifyInvoiceWithLink = async (

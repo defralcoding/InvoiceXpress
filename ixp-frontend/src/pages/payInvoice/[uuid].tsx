@@ -10,7 +10,7 @@ const PayInvoice = () => {
 	useEffect(() => {
 		if (uuid) {
 			fetch(
-				`http://private.defralcoding.it:8000/api/fic/createXMoneyOrder?uuid=${uuid}`
+				`https://invoicexpress.defralcoding.it/api/fic/createXMoneyOrder?uuid=${uuid}`
 			)
 				//redirect to returned url
 				.then((res) => res.json())

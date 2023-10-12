@@ -37,7 +37,7 @@ type Company = {
 
 type Invoice = {
 	company: number;
-	ficInvoiceId: string;
+	ficInvoiceId: number;
 };
 
 function getCompanyDoc(companyId: number) {
@@ -94,7 +94,7 @@ export async function addHandledInvoice(companyId: number, invoiceId: number) {
 
 export async function addInvoice(
 	companyId: number,
-	ficInvoiceId: string
+	ficInvoiceId: number
 ): Promise<string> {
 	const uuid = uuidv4();
 	const invoiceDoc = doc(db, "invoices", uuid);

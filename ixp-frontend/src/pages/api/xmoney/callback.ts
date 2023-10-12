@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { WebhookValidator } from "@utrustdev/utrust-ts-library";
 import fs from "fs";
-import { getInvoice } from "src/utils/firebase";
-import { setInvoicePaid } from "src/utils/fic";
+import { getInvoice } from "@/utils/firebase";
+import { setInvoicePaid } from "@/utils/fic";
 
 export default async function handleNewInvoices(
 	req: NextApiRequest,

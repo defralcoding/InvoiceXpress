@@ -9,14 +9,14 @@ import {
 	getCompanyInvoices,
 	modifyInvoiceWithLink,
 	setInvoicePaid,
-} from "src/utils/fic";
-import { createXMoneyOrder } from "src/utils/xMoney";
+} from "@/utils/fic";
+import { createXMoneyOrder } from "@/utils/xMoney";
 import {
 	getCompanies,
 	addHandledInvoice,
 	isInvoiceHandled,
 	addInvoice,
-} from "src/utils/firebase";
+} from "@/utils/firebase";
 
 export default async function handleNewInvoices(
 	req: NextApiRequest,
@@ -47,7 +47,7 @@ async function handleInvoice(
 	await modifyInvoiceWithLink(
 		companyId,
 		invoice.id ?? 0,
-		`http://private.defralcoding.it:8000/payInvoice/${newUuid}`
+		`https://invoicexpress.defralcoding.it/payInvoice/${newUuid}`
 	);
 
 	//const { redirectUrl, uuid } = await createXMoneyOrder(order, customer);

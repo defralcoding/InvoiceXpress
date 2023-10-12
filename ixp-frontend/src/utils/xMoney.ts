@@ -1,5 +1,4 @@
 import { ApiClient, Order, Customer } from "@utrustdev/utrust-ts-library";
-import * as config from "../config";
 
 export const createXMoneyOrder = async (
 	order: Order,
@@ -10,7 +9,7 @@ export const createXMoneyOrder = async (
 }> => {
 	const { createOrder } = ApiClient(
 		process.env.XMONEY_API_KEY,
-		process.env.XMONEY_ENVIRONMENT
+		process.env.XMONEY_ENVIRONMENT as any
 	);
 
 	const { status, data, errors } = await createOrder(order, customer);

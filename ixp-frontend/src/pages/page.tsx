@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
-import { getCompanies } from "src/utils/firebase";
+import { getCompanies } from "@/utils/firebase";
 
 export default function Home() {
 	useEffect(() => {

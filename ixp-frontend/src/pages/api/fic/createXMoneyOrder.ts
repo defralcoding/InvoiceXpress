@@ -10,15 +10,15 @@ import {
 	modifyInvoiceWithLink,
 	setInvoicePaid,
 	getInvoice as getInvoiceFromFic,
-} from "src/utils/fic";
-import { createXMoneyOrder } from "src/utils/xMoney";
+} from "@/utils/fic";
+import { createXMoneyOrder } from "@/utils/xMoney";
 import {
 	getCompanies,
 	addHandledInvoice,
 	isInvoiceHandled,
 	addInvoice,
 	getInvoice,
-} from "src/utils/firebase";
+} from "@/utils/firebase";
 
 export default async function handleNewInvoices(
 	req: NextApiRequest,
@@ -56,9 +56,9 @@ async function createOrderFromInvoice(
 		},
 		reference: `Fattura n.${invoice.number} del ${invoice.date} <${uuid}>`,
 		return_urls: {
-			return_url: "http://private.defralcoding.it:8000/success",
+			return_url: "https://invoicexpress.defralcoding.it/success",
 			callback_url:
-				"http://private.defralcoding.it:8000/api/xmoney/callback",
+				"https://invoicexpress.defralcoding.it/api/xmoney/callback",
 		},
 		line_items: [],
 	};
@@ -73,5 +73,5 @@ async function createOrderFromInvoice(
 	};
 
 	const { redirectUrl } = await createXMoneyOrder(order, customer);
-	return redirectUrl;
+	return { redirectUrl };
 }

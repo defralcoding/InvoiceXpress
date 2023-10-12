@@ -15,7 +15,7 @@ export default async function getOAuthAccessToken(
 	let oauth = new OAuth2AuthorizationCodeManager(
 		process.env.FIC_CLIENT_ID,
 		process.env.FIC_CLIENT_SECRET,
-		"http://127.0.0.1:3000/api/oauth/fic"
+		"https://invoicexpress.defralcoding.it/api/oauth/fic"
 	);
 
 	if (!params.get("code")) {
