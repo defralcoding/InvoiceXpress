@@ -8,8 +8,6 @@ export default async function handleNewInvoices(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-	fs.writeFileSync("./req.json", JSON.stringify(req.body));
-
 	if (req.method !== "POST") {
 		return res.status(405).send("Method not allowed");
 	}

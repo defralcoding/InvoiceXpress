@@ -34,7 +34,7 @@ export default async function getOAuthAccessToken(
 		try {
 			let token = await oauth.fetchToken(code ?? "");
 			// saving the oAuth access token in the token.json file
-			fs.writeFileSync("./token.json", JSON.stringify(token, null, 4));
+			console.log("token", token);
 			res.redirect("/oauth/fic/success");
 		} catch (e) {
 			res.status(500).send("An error occurred.");
