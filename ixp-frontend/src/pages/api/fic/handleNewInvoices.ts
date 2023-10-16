@@ -38,7 +38,6 @@ async function handleInvoice(
 	invoice: IssuedDocument
 ): Promise<void> {
 	if (await isInvoiceHandled(companyId, invoice.id ?? 0)) {
-		console.log(invoice.id, "already handled");
 		return;
 	}
 	console.log("handling invoice", invoice.id);
@@ -50,8 +49,5 @@ async function handleInvoice(
 		`https://invoicexpress.defralcoding.it/payInvoice/${newUuid}`
 	);
 
-	//const { redirectUrl, uuid } = await createXMoneyOrder(order, customer);
-	//
-
-	//await addHandledInvoice(companyId, invoice.id ?? 0);
+	await addHandledInvoice(companyId, invoice.id ?? 0);
 }
