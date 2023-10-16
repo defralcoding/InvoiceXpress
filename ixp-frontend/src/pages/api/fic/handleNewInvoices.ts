@@ -30,7 +30,7 @@ export default async function handleNewInvoices(
 		}
 	}
 
-	res.status(200).send("Hello World!");
+	res.status(200).send("Invoices handled!");
 }
 
 async function handleInvoice(
@@ -40,7 +40,7 @@ async function handleInvoice(
 	if (await isInvoiceHandled(companyId, invoice.id ?? 0)) {
 		return;
 	}
-	console.log("handling invoice", invoice.id);
+	console.log("Handling invoice", invoice.id);
 
 	const newUuid = await addInvoice(companyId, invoice.id ?? 0);
 	await modifyInvoiceWithLink(

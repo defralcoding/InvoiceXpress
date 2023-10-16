@@ -18,7 +18,6 @@ export const getCompanyInvoices = async (
 		"invoice"
 	);
 
-	console.log(response.data.data);
 	return response.data.data ?? [];
 };
 

@@ -26,11 +26,10 @@ const PayInvoice = () => {
 	}, [uuid]);
 
 	useEffect(() => {
-		console.log(urlToRedirect);
 		if (urlToRedirect) {
 			setStatus("ready");
 			setTimeout(() => {
-				//window.location.href = urlToRedirect;
+				window.location.href = urlToRedirect;
 			}, 1500);
 		}
 	}, [urlToRedirect]);
