@@ -17,12 +17,9 @@ export default async function handleNewInvoices(
 		return res.status(400).send("Invalid signature");
 	}
 
-	/*
-    TODO check
-	if (req.body.eventType !== "ORDER.PAYMENT.RECEIVED") {
+	if (req.body.eventType != "ORDER.PAYMENT.RECEIVED") {
 		return res.status(200).send("Ok");
 	}
-    */
 
 	const reference = req.body.resource.reference;
 	const invoiceUuid = reference.split("<")[1].split(">")[0];
