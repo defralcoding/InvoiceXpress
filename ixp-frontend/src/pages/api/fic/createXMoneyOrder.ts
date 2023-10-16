@@ -64,7 +64,7 @@ async function createOrderFromInvoice(
 		line_items: [],
 	};
 	const customer: Customer = {
-		email: "aledef0302@gmail.com",
+		email: invoice.entity?.email ?? "",
 		first_name: invoice.entity?.name ?? "",
 		country: "IT",
 		address1: invoice.entity?.address_street ?? "",
