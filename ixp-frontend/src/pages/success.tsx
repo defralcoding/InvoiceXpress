@@ -32,7 +32,7 @@ const SuccessPage = () => {
 					You will receive an email with your confirmation shortly.
 				</p>
 				<p className="text-center">
-					We already alerted your supplier about your payment.
+					We already notified your supplier about your payment.
 				</p>
 				<p className="text-center">You can now close this page.</p>
 			</div>
