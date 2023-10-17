@@ -17,7 +17,7 @@ export default async function handleNewInvoices(
 		return res.status(400).send("Invalid signature");
 	}
 
-	console.log(req.body.eventType);
+	console.log("body", req.body);
 	/*
 	if (req.body.eventType != "ORDER.PAYMENT.RECEIVED") {
 		return res.status(200).send("Ok");
