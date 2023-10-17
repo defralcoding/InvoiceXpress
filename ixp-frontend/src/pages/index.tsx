@@ -24,7 +24,7 @@ const SuccessPage = () => {
 						Invoicing Processes
 					</h1>
 					<p className="text-xl text-center mt-4">
-						Leveraging the power of xMoney to help businesses
+						Leveraging the power of xMoney
 					</p>
 				</div>
 			</div>
