@@ -45,3 +45,9 @@ We're positioned as the essential platform for businesses wanting the benefits o
 **Our Audience:** Primarily businesses that use platforms like Fatture in Cloud or other invoicing systems. With an initial focus on the vast 500,000+ user base in Italy that the first integration gives us, there are plans to branch out to other products and European regions.
 
 **Our Solution:** InvoiceXpress offers a streamlined approach to incorporating cryptocurrency into traditional invoicing. Not only do we enhance current tools to ensure easy adoption with minimal disruption, but we also introduce a sustainable revenue model through a nominal annual subscription fee, making it beneficial for both businesses and our growth. We position ourselves as a bridge, enhancing business operations and productivity.
+
+## Demo
+
+The solution is live at [invoicexpress.defralcoding.it](https://invoicexpress.defralcoding.it) and it's already being used in production. Anyway, in the purpose of a hackathon demo, a company would need to register with both Fatture in Cloud and xMoney.
+
+The whole flow is showed and described in the presentation video.
